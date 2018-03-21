@@ -13,17 +13,11 @@
     "ovrui": "~2.0.0",
     "react": "16.0.0",
     "react-native": "~0.48.0",
-<<<<<<< HEAD
-    "three": "^0.87.0",
-    "react-vr": "~2.0.0",
-    "react-vr-web": "~2.0.0"
-=======
     "react-redux": "^5.0.7",
     "react-vr": "~2.0.0",
     "react-vr-web": "~2.0.0",
     "redux": "^3.7.2",
     "three": "^0.87.0"
->>>>>>> bceb38a46552fe1d83f78cd45e6f5b7dd7d4f449
   },
   "devDependencies": {
     "babel-jest": "^19.0.0",
@@ -31,13 +25,10 @@
     "jest": "^19.0.2",
     "react-devtools": "^2.5.2",
     "react-test-renderer": "16.0.0",
-    "xopen": "1.0.0"
+    "xopen": "1.0.0",
+    "simple-peer": "9.0.0"
   },
   "jest": {
     "preset": "react-vr"
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> bceb38a46552fe1d83f78cd45e6f5b7dd7d4f449
