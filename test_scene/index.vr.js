@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 import {
   AppRegistry,
   asset,
@@ -40,6 +41,28 @@ export default class test_scene extends React.Component {
         >
         </Model>
       </View>
+=======
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import { AppRegistry } from 'react-vr';
+
+import App from './src/App';
+import { move } from './src/reducers';
+
+const initialState = {
+  cameraPosition: [0, 0, 0],
+};
+
+let store = createStore(move, initialState);
+
+export default class test_scene extends React.Component {
+
+  render() {
+    return (
+      <Provider store={store}>
+        <App />
+      </Provider>  
+>>>>>>> bceb38a46552fe1d83f78cd45e6f5b7dd7d4f449
     );
   }
 };
