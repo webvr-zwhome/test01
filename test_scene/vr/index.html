@@ -1,23 +1,44 @@
 <html>
   <head>
     <title>test_scene</title>
-    <style>body { margin: 0; }</style>
+    <style>body { margin: 0; } video {height: 0px;margin: 0px}</style>
+    <!-- test signUI -->
+    <style>
+      #back {
+        background: gray;
+        opacity: 0.5;
+      }
+      #sign {
+        position:absolute; 
+        background:gold;
+        width:50%;
+        height:50%;
+        left:25%;
+        top:25%
+      }
+      #outgoing {
+        width: 400px;
+        word-break: break-all;
+      }
+    </style>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   </head>
   <body>
+
+    <div id="back" class="front">
+      <div id="sign">
+      <form>
+          <textarea id="incoming"></textarea>
+          <button type="submit">submit</button>
+        </form>
+        <textarea id="outgoing"></textarea>
+      </div>
+    </div>
     
     <!-- When you're ready to deploy your app, update this line to point to your compiled client.bundle.js -->
+    <script src=".././node_modules/simple-peer/simplepeer.min.js"></script>
     <script src="./client.bundle?platform=vr"></script>
-    <script>
-      // Initialize the React VR application
-      ReactVR.init(
-        // When you're ready to deploy your app, update this line to point to
-        // your compiled index.bundle.js
-        '../index.vr.bundle?platform=vr&dev=true',
-        // Attach it to the body tag
-        document.body
-      );
-    </script>
+    <script src="signIn.js"></script>
   </body>
 </html>
 
