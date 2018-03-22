@@ -13,7 +13,7 @@ const initialState = {
 let store = createStore(move, initialState);
 
 export default class test_scene extends React.Component {
-
+ 
   render() {
     return (
       <Provider store={store}>
