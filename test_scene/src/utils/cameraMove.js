@@ -2,29 +2,29 @@
 
 /**
  * 
- * @param {number} preViewportX 
- * @param {number} preViewportY 
- * @param {number} curViewportX 
- * @param {number} curViewportY 
+ * @param {number} preX 
+ * @param {number} preY 
+ * @param {number} curX 
+ * @param {number} curY 
  * @returns {object}
  */
-export function cameraMoveWithMouse(preViewportX, preViewportY, curViewportX, curViewportY) {
+export function cameraMove(preX, preY, curX, curY) {
 
     const STEP = 0.5;
     const ANGLE = 1;
     const NO_STEP = 0;
     const NO_ANGLE = 0;
 
-    if (Math.abs(curViewportX) <= Math.abs(curViewportY)) {
+    if (Math.abs(curX) <= Math.abs(curY)) {
         //前进或后退
-        if (curViewportY > 0 && curViewportY > preViewportY) {
+        if (curY > 0 && curY > preY) {
             //前进
             return {
                step: -1 * STEP,
                angle: NO_ANGLE, 
             }
         } 
-        if (curViewportY < 0 && curViewportY < preViewportY) {
+        if (curY < 0 && curY < preY) {
             // 后退
             return {
                 step:  STEP,
@@ -33,14 +33,14 @@ export function cameraMoveWithMouse(preViewportX, preViewportY, curViewportX, cu
         }
     } else {
         //左右转动
-        if (curViewportX > 0 && curViewportX > preViewportX) {
+        if (curX > 0 && curX > preX) {
             //右转
             return {
                 step: NO_STEP,
                 angle: -1 * ANGLE,
             }
         }
-        if (curViewportX < 0 && curViewportX < preViewportX) {
+        if (curX < 0 && curX < preX) {
             //左转
             return {
                 step: NO_STEP,
@@ -54,13 +54,15 @@ export function cameraMoveWithMouse(preViewportX, preViewportY, curViewportX, cu
     }
 }
 
-/**
- * 
- * @param {number} axis0 
- * @param {number} axis1
- * @returns {number}
- */
-export function cameraMoveWithGamepad(preAxis0, preAxis1, curAxis0, curAxis1) {
+// /**
+//  * 
+//  * @param {number} preAxis0 
+//  * @param {number} preAxis1 
+//  * @param {number} curAxis0 
+//  * @param {number} curAxis1 
+//  * @returns {object}
+//  */
+// export function cameraMoveWithGamepad(preAxis0, preAxis1, curAxis0, curAxis1) {
     
-    return 0;
-}
+//     return 0;
+// }

@@ -46,7 +46,6 @@ const ControllerList = controllers => {
     }
     // console.log('con: ', controllers);
     return controllers.map(c => <ControllerState key={c.index} controller={c} />);
-    // return controllers.map(c => <Room />)
 };
 
 export default class Controller extends React.Component {

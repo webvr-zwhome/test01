@@ -32,30 +32,6 @@ class App extends React.Component {
             <View>
                 {/* <Controller /> */}
                 <Pano source={asset('chess-world.jpg')}/>
-                {/* <Sphere
-                    radius={20}
-                    widthSegments={20}
-                    heightSegments={12}
-                    style={{
-                        transform: [{
-                            translate: [0, 1, -2],
-                        }]
-                    }}
-                /> */}
-                {/* <Text
-                    style={{
-                        backgroundColor: '#770000',
-                        fontSize: 0.2,
-                        fontWeight: '500',
-                        layoutOrigin: [0.5, 0.5],
-                        paddingLeft: 0.2,
-                        paddingRight: 0.2,
-                        textAlign: 'center',
-                        textAlignVertical: 'center',
-                        transform: [{translate: [0, 0, 0]}],
-                    }}>
-                    GIGI
-                </Text> */}
                 <Camera />
             </View> 
         )

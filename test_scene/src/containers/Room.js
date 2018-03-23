@@ -56,7 +56,10 @@ export default class Room extends React.Component {
     }
 
     render() {
-        // const cameraPosition = this.props.cameraPosition;
+
+        const INITIAL_X = -11;
+        const INITIAL_Z = -23;
+        const INITIAL_ROTATION = -90;
         return (
             <View>
                 <Model
@@ -66,8 +69,8 @@ export default class Room extends React.Component {
                     }}
                     style={{
                         transform: [
-                            // { translate: [0, 0, this.props.moveZ]}, //初始化进入时的高度
-                            // { rotateY: - this.props.rotate },         //矫正camera的视角
+                            { translate: [INITIAL_X, 0, INITIAL_X]}, //初始化进入时的高度
+                            { rotateY: INITIAL_ROTATION },         //矫正camera的视角
                         ],
                     }}
                 >
