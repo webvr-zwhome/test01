@@ -31,11 +31,13 @@ export default class Camera extends React.Component {
             moveX: 0,        // 世界坐标camera的x轴位置
             moveZ: 0,        // 世界坐标camera的z轴位置
             rotate: 0,       // 左右旋转值 叠加计算
+            isSecond: false, // 针对手柄，手柄摇杆的横纵向值不是同时检测
         }
-
+        let preAxes = [];
         RCTDeviceEventEmitter.addListener('onReceivedInputEvent', e => {
            
-            // console.log('e', e);
+            // if (e.type !== 'MouseInputEvent' && e.type !== 'KeyboardInputEvent') 
+            // {console.log('e1', e);}
             // 【mouse + shift】控制漫游
             if (e.eventType === 'mousemove' && e.shiftKey) {
 
@@ -46,8 +48,8 @@ export default class Camera extends React.Component {
                 
                 if(move.step !== 0) {
 
-                    if(move.step < 0) { console.log('前进: ', move.step)}
-                    if(move.step > 0) { console.log('后退: ', move.step)}
+                    // if(move.step < 0) { console.log('前进: ', move.step)}
+                    // if(move.step > 0) { console.log('后退: ', move.step)}
                  
                     this.setState({
                         viewportX: e.viewportX,
@@ -59,8 +61,8 @@ export default class Camera extends React.Component {
                 }
                 if(move.angle !== 0) {
 
-                    if(move.angle > 0) { console.log('左转: ', move.angle)}
-                    if(move.angle < 0) { console.log('右转: ', move.angle)}
+                    // if(move.angle > 0) { console.log('左转: ', move.angle)}
+                    // if(move.angle < 0) { console.log('右转: ', move.angle)}
 
                     this.setState({
                         viewportX: e.viewportX,
@@ -84,36 +86,50 @@ export default class Camera extends React.Component {
             // 左手柄摇杆控制漫游
             if (e.gamepad === 0 && e.eventType === 'axismove') {
 
-                const preAxis0 = this.state.axes[0];   // 0-横向摇杆控制左右旋转
-                const preAxis1 = this.state.axes[1];   // 1-纵向摇杆控制前后移动
-
-                const axes = []; //当前摇杆的值得数组
+                // console.log('e2', e);
+                
+                const axes = this.state.axes.slice(); //当前摇杆的值得数组
+                // if(!this.state.isSecond) {
+                //     axes[e.axis] = e.value;
+                // }
+               console.log('wedwef', axes);
                 if (e.axis === 0) {
+                    // preAxis0 = this.state.axes[0];   // 0-横向摇杆控制左右旋转
+                    // preAxis1 = this.state.axes[1];   // 1-纵向摇杆控制前后移动
+                    preAxes = this.state.axes;
                     axes[0] = e.value;  //先获得摇杆横向的值
-                } else if (axes[0] && e.axis === 1) {
+                    console.log('获取第一个数: ', axes);
+                    this.setState({
+                        axes,
+                        isSecond: true,
+                    })
+                } else if (this.state.isSecond && e.axis === 1) {
                     axes[1] = e.value;
-                    const move = cameraMoveWithMouse(preAxis0, preAxis0, axes[0], axes[1]);
+                    console.log('获取第二个数: ', axes);
+                    const move = cameraMove(preAxes[0], preAxes[1], axes[0], axes[1]);
                     if(move.step !== 0) {
 
-                        if(move.step < 0) { console.log('前进: ', move.step)}
-                        if(move.step > 0) { console.log('后退: ', move.step)}
+                        // if(move.step < 0) { console.log('前进: ', move.step)}
+                        // if(move.step > 0) { console.log('后退: ', move.step)}
                      
                         this.setState({
-                            axes: [axes[0], axes[1]],
+                            axes,
                             move: move.step,   
                             moveX: this.state.moveX - this.state.move * Math.sin(this.state.rotate),
                             moveZ: this.state.moveZ - this.state.move * Math.cos(this.state.rotate),
+                            isSecond: false,
                         })
                     }
                     if(move.angle !== 0) {
     
-                        if(move.angle > 0) { console.log('左转: ', move.angle)}
-                        if(move.angle < 0) { console.log('右转: ', move.angle)}
+                        // if(move.angle > 0) { console.log('左转: ', move.angle)}
+                        // if(move.angle < 0) { console.log('右转: ', move.angle)}
     
                         this.setState({
-                            axes: [axes[0], axes[1]],
+                            axes,
                             move: 0,
                             rotate: this.state.rotate + move.angle,
+                            isSecond: false,
                         })
                     }
                 }
